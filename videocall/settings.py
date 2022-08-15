@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+from django_jinja.builtins import DEFAULT_EXTENSIONS
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure-9ndce&l@l+tiq0&hpd^9p!xki()!dka-l+ad+$cn)48v-%(ybr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["rtcvideocall.pythonanywhere.com", "django-videocall.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,10 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'accounts',
     'call',
     'channels',
+    'webpush',
 ]
+
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": "BDZMk6M0RTPrPprlrGnQBPrFOMKs_Vb-kUQDDoDqUAcmonD6m2FBhlMVEA-kxH0xdA5XxrU3xebzW_7xZ33xSeg",
+    "VAPID_PRIVATE_KEY": "CXQxGrkymAl63UU4T8OkIZ98-WgFJLs03BJ_lEqgORc",
+    "VAPID_ADMIN_EMAIL": "baktiarzaksylykov22@gmail.com"
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +68,7 @@ ROOT_URLCONF = 'videocall.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +79,14 @@ TEMPLATES = [
             ],
         },
     },
+    # {
+    #     "BACKEND": "django_jinja.backend.Jinja2",
+    #     "OPTIONS": {
+    #         "extensions": DEFAULT_EXTENSIONS + [
+    #             "webpush.jinja2.WebPushExtension"
+    #         ]
+    #     }
+    # },
 ]
 
 WSGI_APPLICATION = 'videocall.wsgi.application'
@@ -125,12 +142,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # For Local Development
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # For Deployments
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -139,7 +156,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ASGI_APPLICATION = 'videocall.asgi.application'
 
-CHANNEL_LAYERS={
+CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
      }

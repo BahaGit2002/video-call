@@ -37,7 +37,6 @@ function answer() {
 
     document.getElementById("answer").style.display = "none";
 }
-
 let pcConfig = {
     "iceServers":
         [

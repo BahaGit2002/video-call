@@ -2,6 +2,10 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from webpush import send_user_notification
+# from .views import send_push
+from django.contrib.auth.models import User
+
 
 class CallConsumer(WebsocketConsumer):
     def connect(self):
@@ -43,9 +47,11 @@ class CallConsumer(WebsocketConsumer):
         
         if eventType == 'call':
             name = text_data_json['data']['name']
-            print(self.my_name, "is calling", name);
-            # print(text_data_json)
+            # send_push('qdw', 'dac', 1)
+            print(self.my_name, "is calling", name)
+            # user_id = data['id']
 
+            # print(text_data_json)
 
             # to notify the callee we sent an event to the group name
             # and their's groun name is the name
@@ -94,12 +100,11 @@ class CallConsumer(WebsocketConsumer):
     def call_received(self, event):
 
         # print(event)
-        print('Call received by ', self.my_name )
+        print('Call received by ', self.my_name)
         self.send(text_data=json.dumps({
             'type': 'call_received',
             'data': event['data']
         }))
-
 
     def call_answered(self, event):
 
@@ -109,7 +114,6 @@ class CallConsumer(WebsocketConsumer):
             'type': 'call_answered',
             'data': event['data']
         }))
-
 
     def ICEcandidate(self, event):
         self.send(text_data=json.dumps({

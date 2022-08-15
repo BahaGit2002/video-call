@@ -1,12 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
+{% load webpush_notifications %}
 <html lang="en">
 
 <head>
+    {% webpush_header %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/static/logo.png" type="image/png" />
     <title>Video Call</title>
-    <link rel="stylesheet" href="/static/call.css">
+    <link rel="stylesheet" href="{% static 'call.js' %}">
+{#    <link rel="stylesheet" href="{% static 'call.css' %}">#}
 
     <style>
         body {
@@ -25,6 +29,8 @@
 </head>
 
 <body>
+
+  {% webpush_button %}
     <div>
         <div>
             <!-- to input username and login -->
@@ -123,10 +129,6 @@
             <div style="flex-grow: 1;">
             </div>
         </div>
-
-
-
-
 
     </div>
     <div style="flex-grow: 1;">
