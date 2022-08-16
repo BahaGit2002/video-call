@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-9ndce&l@l+tiq0&hpd^9p!xki()!dka-l+ad+$cn)48v-%(ybr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,11 +47,6 @@ INSTALLED_APPS = [
     'webpush',
 ]
 
-WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": "BDZMk6M0RTPrPprlrGnQBPrFOMKs_Vb-kUQDDoDqUAcmonD6m2FBhlMVEA-kxH0xdA5XxrU3xebzW_7xZ33xSeg",
-    "VAPID_PRIVATE_KEY": "CXQxGrkymAl63UU4T8OkIZ98-WgFJLs03BJ_lEqgORc",
-    "VAPID_ADMIN_EMAIL": "baktiarzaksylykov22@gmail.com"
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,3 +156,12 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
      }
 }
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": "BDZMk6M0RTPrPprlrGnQBPrFOMKs_Vb-kUQDDoDqUAcmonD6m2FBhlMVEA-kxH0xdA5XxrU3xebzW_7xZ33xSeg",
+    "VAPID_PRIVATE_KEY": "CXQxGrkymAl63UU4T8OkIZ98-WgFJLs03BJ_lEqgORc",
+    "VAPID_ADMIN_EMAIL": "baktiarzaksylykov22@gmail.com"
+}
+
+
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'WebRTC-Django-Django-Channels-Video-Call', 'serviceworker.js')
+

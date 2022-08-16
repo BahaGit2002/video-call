@@ -11,15 +11,12 @@ from django.conf import settings
 from django.views.decorators.http import require_GET
 
 
-@require_GET
 def index(request):
-    webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
-    vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
-    print(vapid_key)
     user = request.user
+    print(user)
     payload = {'head': 'hello', 'body': 'ыолтаоф'}
     send_user_notification(user=user, payload=payload, ttl=1000)
-    return render(request, 'index.html', {user: user, 'vapid_key': vapid_key})
+    return render(request, 'index.html')
 
 
 def home(request):

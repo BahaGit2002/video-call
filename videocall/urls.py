@@ -25,4 +25,4 @@ urlpatterns = [
     path('', include('call.urls')),
     path('accounts/', include('accounts.urls')),
     path('webpush/', include('webpush.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
