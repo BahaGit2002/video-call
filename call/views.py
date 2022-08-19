@@ -1,45 +1,28 @@
-from django.shortcuts import render
-from django.http.response import JsonResponse
-from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification
-import json
-from django.shortcuts import render, get_object_or_404
-from django.conf import settings
+from django.shortcuts import render
+from django.contrib.auth.models import User
+from datetime import timedelta
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 
 
+# @require_GET
+# @csrf_exempt
 def index(request):
     user = request.user
-    print(user)
-    payload = {'head': 'hello', 'body': 'ыолтаоф'}
+    payload = {"head": "Welcome!", "body": "Hello World"}
     send_user_notification(user=user, payload=payload, ttl=1000)
     return render(request, 'index.html')
 
 
-def home(request):
-    return render(request, 'home.html')
-#
-# @require_POST
-# @csrf_exempt
-# def send_push(request):
-#     if request.method == "get":
-#         user = User.objects.all()
-#         return render(request, 'home.html', {'user': user})
-#     if request.method == "POST":
-#         # print(request.POST['head'])
-#         try:
-#             data = {}
-#             data['body'] = request.POST.get('body')
-#             data['head'] = request.POST.get('head')
-#             # if 'head' not in data or 'body' not in data or 'id' not in data:
-#             #     return JsonResponse(status=400, data={"message": "Invalid data format"})
-#             print(request.POST)
-#
-#
-#             return JsonResponse(status=200, data={"message": "Web push successful"})
-#         except TypeError:
-#             return JsonResponse(status=500, data={"message": "An error occurred"})
 
+# from myproject.profiles.models import Profile
+
+
+# class UpdateLastActivityMiddleware(object):
+#     def process_view(self, request, view_func, view_args, view_kwargs):
+#         assert hasattr(request, 'user'), 'The UpdateLastActivityMiddleware requires authentication middleware to be installed.'
+#         if request.user.is_authenticated():
+#             Profile.objects.filter(user__id=request.user.id) \
+#                            .update(last_activity=timezone.now())

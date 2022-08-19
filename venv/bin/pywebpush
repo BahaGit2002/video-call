@@ -1,4 +1,4 @@
-#!/Users/user/WebRTC-Django-Django-Channels-Video-Call/venv/bin/python3
+#!/Users/user/WebRTC-Django-Django-Channels-Video-Call/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'pywebpush==1.9.4','console_scripts','pywebpush'
 import re
 import sys

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from django_jinja.builtins import DEFAULT_EXTENSIONS
+# from django_jinja.builtins import DEFAULT_EXTENSIONS
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    # 'online_users.middleware.OnlineNowMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -157,8 +158,8 @@ CHANNEL_LAYERS = {
      }
 }
 WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": "BDZMk6M0RTPrPprlrGnQBPrFOMKs_Vb-kUQDDoDqUAcmonD6m2FBhlMVEA-kxH0xdA5XxrU3xebzW_7xZ33xSeg",
-    "VAPID_PRIVATE_KEY": "CXQxGrkymAl63UU4T8OkIZ98-WgFJLs03BJ_lEqgORc",
+    "VAPID_PUBLIC_KEY": "BNr_2lS-2atZMgHH4qVI0lBym5TPrXtydwjrDN10TEOTHQTuIAbn7MmiGrlaJmwxhzb3sc6T94POhCULa1ZWPQM",
+    "VAPID_PRIVATE_KEY": "gSTWD1i3Jjr4rFSiIoT9iYTukD4iTx7AhH6H7LR4PVk",
     "VAPID_ADMIN_EMAIL": "baktiarzaksylykov22@gmail.com"
 }
 

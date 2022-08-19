@@ -38,7 +38,6 @@ class CallConsumer(WebsocketConsumer):
 
             # we will use this as room name as well
             self.my_name = name
-
             # Join room
             async_to_sync(self.channel_layer.group_add)(
                 self.my_name,
@@ -47,8 +46,9 @@ class CallConsumer(WebsocketConsumer):
         
         if eventType == 'call':
             name = text_data_json['data']['name']
+            # print(name)
             # send_push('qdw', 'dac', 1)
-            print(self.my_name, "is calling", name)
+            # print(self.my_name, "is calling", name)
             # user_id = data['id']
 
             # print(text_data_json)
@@ -99,8 +99,8 @@ class CallConsumer(WebsocketConsumer):
 
     def call_received(self, event):
 
-        # print(event)
-        print('Call received by ', self.my_name)
+        print(event)
+        # print('Call received by ', self.my_name)
         self.send(text_data=json.dumps({
             'type': 'call_received',
             'data': event['data']
@@ -108,14 +108,15 @@ class CallConsumer(WebsocketConsumer):
 
     def call_answered(self, event):
 
-        # print(event)
-        print(self.my_name, "'s call answered")
+        print(event)
+        # print(self.my_name, "'s call answered")
         self.send(text_data=json.dumps({
             'type': 'call_answered',
             'data': event['data']
         }))
 
     def ICEcandidate(self, event):
+        print(event)
         self.send(text_data=json.dumps({
             'type': 'ICEcandidate',
             'data': event['data']

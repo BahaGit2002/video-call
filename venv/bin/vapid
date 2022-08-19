@@ -1,4 +1,4 @@
-#!/Users/user/WebRTC-Django-Django-Channels-Video-Call/venv/bin/python3
+#!/Users/user/WebRTC-Django-Django-Channels-Video-Call/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'py-vapid==1.8.2','console_scripts','vapid'
 import re
 import sys
